@@ -25,7 +25,14 @@ exports.signIn = async (req, res) => {
       });
     }
     if (result === true) {
-      res.status(200).json({ message: "Logged In Successfully" });
+      const token = jwt.sign(
+        {
+          email: email,
+        },
+        process.env.SECRET_KEY,
+        { expiresIn: "7d" }
+      );
+      res.status(200).json({ message: "Logged In Successfully", token: token });
     } else {
       res.status(401).json({ message: "Invalid password" });
     }
