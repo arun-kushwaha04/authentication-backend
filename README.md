@@ -3,10 +3,10 @@ Backend designed for Authentication using MongoDB and Nodejs.
 
 ## Routes
 **/auth/signUp**
-- Accepts name, email and password then creates and stores a user entry it in the database. Password is hashed before adding to database.<br> 
+- Accepts name, email and password then creates a user entry in the database. Password is hashed before adding to database.<br> 
 
 **/auth/signIn**
-- Accepts email and password. Returns a JWT token on succesful sing in and throw an error on unsuccessful attempt.<br>
+- Accepts email and password. Returns a JWT token on successful sing in and throw an error on unsuccessful attempt.<br>
 
 **/home**
 - Accpepts JWT token as bearer token in header auth and responds with success on validation.
