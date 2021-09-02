@@ -14,7 +14,7 @@ app.use("/auth", authRoute);
 
 app.get("/", (req, res) => {
   res.status(200).json({
-    message: `Server up and running at ${port}`,
+    message: `Server up and running at ${PORT}`,
   });
 });
 
