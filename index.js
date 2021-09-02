@@ -1,9 +1,15 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors");
 const app = express();
+const authRoute = require("./Authentication/auth");
 require("dotenv/config");
 
 const PORT = process.env.PORT || 8000;
+app.use(cors());
+app.use(express.json());
+
+app.use("/auth", authRoute);
 
 app.get("/", (req, res) => {
   res.status(200).json({
@@ -11,23 +17,14 @@ app.get("/", (req, res) => {
   });
 });
 
-mongoose.connect(
-  process.env.DB_URL,
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false,
-    useCreateIndex: true,
-  },
-  (err) => {
-    if (err) {
-      console.log("Error caused in connection to database");
-    } else {
-      console.log("Connected to database ☺");
-    }
+mongoose.connect(process.env.DB_URL, (err) => {
+  if (err) {
+    console.log("Error caused in connection to database", err);
+  } else {
+    console.log("Connected to database ☺");
   }
-);
+});
 
-app.listen(port, () => {
-  console.log(`Server up and running at ${port}`);
+app.listen(PORT, () => {
+  console.log(`Server up and running at ${PORT}`);
 });
